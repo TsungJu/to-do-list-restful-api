@@ -31,7 +31,7 @@ router.use(BodyParser.text());
 //POST create todo item
 function createItem(request,response){
 	var id=counter+=1,item=request.body;
-
+	
 	todolist[id]=item;
 	response.writeHead(201,{'Content-Type':'text/plain','Location':'/todo/'+id});
 	response.end('Item:'+item);
