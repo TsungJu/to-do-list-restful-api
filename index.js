@@ -22,6 +22,8 @@ var server = http.createServer(function (request, response) {
 		response.write(data);
 		return response.end();
 	});*/
+	response.writeHead(200,{'Content-Type':'text/html'});
+	response.end('Hello RESTful API!');
 });
 var port = process.env.PORT || 8888;
 server.listen(port);
@@ -31,7 +33,7 @@ router.use(BodyParser.text());
 //POST create todo item
 function createItem(request,response){
 	var id=counter+=1,item=request.body;
-	
+
 	todolist[id]=item;
 	response.writeHead(201,{'Content-Type':'text/plain','Location':'/todo/'+id});
 	response.end('Item:'+item);
