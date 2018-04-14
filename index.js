@@ -43,5 +43,21 @@ function web(request,response){
 	response.end('Hello Restful API !!');
 }
 
+//read item
+function readItem( request, response ) {
+	 var id = request.params.id,
+	 item = todolist[id];
+
+	 if ( typeof item !== 'string' ) {
+		 response.writeHead(404);
+		 response.end('\n');
+		 return;
+   }
+
+	 response.writeHead(200,{'Content-Type':'text/plain'});
+	 response.end(item);
+}
+
+router.get('/todo/:id',readItem);
 router.post('/todo',createItem);
 router.get('',web);
