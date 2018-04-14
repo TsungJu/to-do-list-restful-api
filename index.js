@@ -58,6 +58,62 @@ function readItem( request, response ) {
 	 response.end(item);
 }
 
+//delete Item
+function deleteItem( request, response ) {
+	 var id = request.params.id;
+
+	 if ( typeof todoList[id] !== 'string' ) {
+	 console.log('Item not found',id);
+	 response.writeHead(404);
+	 response.end('\n');
+	 return;
+	 }
+
+	 todolist[id] = undefined;
+	 response.writeHead( 204, {'Content-Type' : 'text/plain'});
+	 response.end('');
+}
+
+//read todo list
+function readlist(request,response){
+	var item,itemlist=[],liststring;
+
+	for(id in todolist){
+		if ( !todolist.hasOwnProperty(id) ) {
+      continue;
+    }
+    item = todolist[id];
+
+    if ( typeof item !== 'string' ) {
+      continue;
+    }
+
+    itemlist.push( item );
+	}
+
+  liststring=JSON.stringify(itemlist);
+	response.writeHead( 200, {'Content-Type' : 'text/plain'});
+	response.end(liststring);
+}
+
+//update item
+function updateItem( request, response ){
+  var id = request.params.id, item = request.body;
+
+  if ( typeof todolist[id] !== 'string' ) {
+    response.writeHead(404);
+    response.end('\n');
+    return;
+  }
+
+  todolist[id] = item;
+  response.writeHead( 201, {'Content-Type' : 'text/plain','Location' : '/todo/' + id});
+  response.end( item );
+}
+
+router.put( '/todo/:id', updateItem );
+router.get('/list',readlist);
+router.delete('/todo/:id', deleteItem );
 router.get('/todo/:id',readItem);
 router.post('/todo',createItem);
 router.get('',web);
