@@ -22,8 +22,6 @@ var server = http.createServer(function (request, response) {
 		response.write(data);
 		return response.end();
 	});*/
-	response.writeHead(200,{'Content-Type':'text/html'});
-	response.end('Hello RESTful API!');
 });
 var port = process.env.PORT || 8888;
 server.listen(port);
@@ -38,4 +36,12 @@ function createItem(request,response){
 	response.writeHead(201,{'Content-Type':'text/plain','Location':'/todo/'+id});
 	response.end('Item:'+item);
 }
+
+//get website
+function web(request,response){
+	response.writeHead(200,{'Content-Type':'text/html'});
+	response.end('Hello Restful API !!');
+}
+
 router.post('/todo',createItem);
+router.get('',web);
