@@ -54,5 +54,4 @@ jobs:
           app-name: 'leoleeBackend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_065E4E40589446388B5527386387157E }}
-          package: .\to-do-list
-          startup-command: npm start
+          package: .
