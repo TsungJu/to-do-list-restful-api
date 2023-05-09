@@ -57,3 +57,4 @@ jobs:
           package: ./to-do-list
         run: |
           npm start
+        working-directory: ./to-do-list
