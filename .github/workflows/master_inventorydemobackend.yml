@@ -58,5 +58,5 @@ jobs:
 
       - name: npm start
         run:
-          npm start
+          npm run azureappstart
         working-directory: ./to-do-list
