@@ -57,6 +57,6 @@ jobs:
           package: .
       - name: npm start
         run:
-          npm run start
+          npm start
         working-directory: .\to-do-list
 
