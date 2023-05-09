@@ -55,6 +55,4 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_065E4E40589446388B5527386387157E }}
           package: ./to-do-list
-        run: |
-          npm start
         working-directory: ./to-do-list
